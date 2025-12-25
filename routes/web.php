@@ -92,3 +92,38 @@ Route::prefix('admin')->group(function () {
 
 
 //Dasboard
+
+
+Route::get('/link-storage', function () {
+    // Menghapus link lama jika ada (opsional tapi bagus untuk jaga-jaga)
+    if (is_link(public_path('storage'))) {
+        app('files')->delete(public_path('storage'));
+    }
+    
+    Artisan::call('storage:link');
+    return "Storage link berhasil dibuat!";
+});
+
+Route::get('/buat-admin-darurat', function () {
+    $check = Employee::where('employee_email', 'yuwanda@gmail.com')->first();
+    
+    if ($check) {
+        return "User sudah ada! Silakan login.";
+    }
+
+    Employee::create([
+        'employee_name' => 'Yuwanda Aji',
+        'employee_address' => 'Jl. Sudirman No. 123',
+        'employee_number' => '08123456789',
+        'employee_gender' => 1,
+        'employee_email' => 'yuwanda@gmail.com',
+        'password' => Hash::make('ajiganteng'), 
+        'employee_date_born' => '2006-03-12',
+        'employee_role' => 'Manager',
+        'employee_salary' => 5000000,
+        'employee_date_join' => '2023-01-10',
+        'employee_img' => 'employee_img/yuwandaaji.jpg'
+    ]);
+
+    return "User berhasil dibuat dengan password ter-bcrypt!";
+});
