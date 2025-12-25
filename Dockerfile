@@ -1,58 +1,36 @@
-# =========================
-# Base Image
-# =========================
-FROM php:8.4-cli
+FROM php:8.4-apache
 
-# =========================
-# Install system dependencies
-# =========================
+# Install dependencies sistem & ekstensi PHP untuk MySQL
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
-    libpq-dev \
-    && docker-php-ext-install zip pdo pdo_mysql pdo_pgsql \
+    && docker-php-ext-install zip pdo pdo_mysql \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# =========================
-# Install Composer
-# =========================
+# Aktifkan mod_rewrite Apache (Penting untuk Laravel)
+RUN a2enmod rewrite
+
+# Set working directory ke standar Apache
+WORKDIR /var/www/html
+
+# Copy Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# =========================
-# Set working directory
-# =========================
-WORKDIR /app
-
-# =========================
 # Copy project files
-# =========================
 COPY . .
 
-# =========================
-# Install PHP dependencies
-# =========================
-RUN composer install \
-    --no-dev \
-    --optimize-autoloader \
-    --no-interaction \
-    --no-scripts
+# Install dependencies Laravel
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# =========================
-# Laravel setup
-# =========================
-RUN php artisan key:generate || true \
-    && php artisan config:clear \
-    && php artisan route:clear \
-    && php artisan view:clear
+# Berikan izin akses folder storage & cache (Mencegah Error 500)
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# =========================
-# Expose Railway port
-# =========================
-EXPOSE 8080
+# Arahkan Apache ke folder /public Laravel
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# =========================
-# Run Laravel
-# =========================
-CMD php artisan serve --host=0.0.0.0 --port=8080
+EXPOSE 80
+CMD ["apache2-foreground"]
