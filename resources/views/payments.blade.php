@@ -132,7 +132,7 @@
                 @foreach ($payments as $payment)
                     <a href={{ url("admin/payments/$payment->payment_id") }} style="width: 150px;" class="card">
                         @if($payment->payment_img)
-                            <img src={{ asset('storage/'. $payment->payment_img) }} alt="image-emp">
+                            <img src={{ asset('img/'. $payment->payment_img) }} alt="image-emp">
                         @endif
                         <div class="inner-card">
                             <p class="name-pay">{{ $payment->payment_name }}</p>

@@ -138,7 +138,7 @@
 
                     <a class="card" href={{ url("admin/products/$product->product_id") }} style="width: 150px;">
                         @if($product->product_img)
-                            <img src={{ asset('img/'. $product->product_img) }} alt="image-emp">
+                            <img src={{ asset('storage/'. $product->product_img) }} alt="image-emp">
                         @endif
                         <p class="name-produk">{{$product->product_name}}</p>
                         <p class="price">Rp {{ $product->product_price }}</p>
