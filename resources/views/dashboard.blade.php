@@ -115,10 +115,10 @@
 
                 <div class="card">
                     <div class="card-inner">
-                        <p class="text-primary">FEEDBACK</p>
-                        <span class="material-symbols-outlined">feedback</span>
+                        <p class="text-primary">EMPLOYEES</p>
+                        <span class="material-symbols-outlined">manage_accounts</span>
                     </div>
-                    <span class="text-primary font-weight-bold">{{ $totalfeedback }}</span>
+                    <span class="text-primary font-weight-bold">{{ $totalemployee }}</span>
                 </div>
 
                 <div class="card">

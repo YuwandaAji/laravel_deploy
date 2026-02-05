@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Employee;
 use App\Models\Feedback;
 use App\Models\Sales;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class DashboardController extends Controller
             ->where('sales.pay_status', 1)
             ->sum(DB::raw('product.product_price * order.order_quantity')); 
         
-        $totalfeedback = Feedback::count();
+        $totalemployee = Employee::count();
         $totalcustomer = Customer::count();
         
         $topProducts = DB::table('order')
@@ -51,7 +52,7 @@ class DashboardController extends Controller
         return view('dashboard', compact(
             'totalsales', 
             'totalrevenue', 
-            'totalfeedback', 
+            'totalemployee', 
             'totalcustomer', 
             'nameProducts', 
             'totalProduct', 
