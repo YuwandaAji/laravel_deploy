@@ -85,10 +85,6 @@
                     <span class="material-symbols-outlined">list_alt</span>
                     <a href={{ url('admin/sales') }}>Pesanan</a>  
                 </li>
-                <li class="sidebar-list-item {{ Request::is('admin/feedbacks') ? 'active' : '' }}">
-                    <span class="material-symbols-outlined">feedback</span>
-                    <a href={{ url('admin/feedbacks') }}>Feedback</a>  
-                </li>
             </ul>
         </aside>
         <!--END SIDEBAR-->

@@ -89,10 +89,6 @@
                     <span class="material-symbols-outlined">list_alt</span>
                     <a href={{ url('admin/sales') }}>Pesanan</a>  
                 </li>
-                <li class="sidebar-list-item {{ Request::is('admin/feedbacks') ? 'active' : '' }}">
-                    <span class="material-symbols-outlined">feedback</span>
-                    <a href={{ url('admin/feedbacks') }}>Feedback</a>  
-                </li>
             </ul>
         </aside>
         <!--END SIDEBAR-->
@@ -108,7 +104,6 @@
 
                 <div class="feature-left">
                     <button id="button-new" class="add-btn">+ Add</button>
-                    <button id="button-disc" class="disc-btn">Discount</button>
                 </div>
 
                 <div class="feature-right">
@@ -236,71 +231,7 @@
                 </form>
             </div>
 
-            <!--POP UP DISCOUNT-->
-
-            <div class="popup-dsc" id="popDsc">
-                <div class="form-dsc" id="formDsc">
-                    <div class="inner-form-dsc">
-                        <div class="text-dsc">
-                            <div class="name-dsc">
-                                <label class="namedsc-label">Discount Name</label>
-                                <input type="text" id="nameDscInput" style="display: block;" placeholder="" value="">
-                                        
-                            </div>
-
-                            <div class="percent-dsc">
-                                <label class="prcdsc-label">Percent</label>
-                                <div class="inner-prc-dsc">
-                                    <input type="text" id="prcDscInput" style="display: block;" placeholder="" value="">
-                                    <span class="icon-prc">%</span>
-                                </div>
-                                
-                            </div>
-                            
-                            <div class="dsc-date">
-                                <label class="dsc-date-label">From</label>
-                                <input type="date" id="fromInput" style="display: block;" placeholder="" value="">
-                                <label class="dsc-date-label">To</label>
-                                <input type="date" id="ToInput" style="display: block;" placeholder="" value="">
-                            </div>
-                        </div>
-
-                        <div class="dsc-item">
-                            <table class="table-dsc">
-                                <thead >
-                                    <tr class="header-table">
-                                        <th class="item">
-                                            <span>Item</span>
-                                        </th>
-
-                                        <th class="delete">
-                                            <span class="material-symbols-outlined">settings_input_component</span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="schedule-body">
-                                    
-                                </tbody>
-
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div class="odoo-add-line" onclick="addRow()">
-                                                <i class="fa fa-plus-circle"></i> Add a line
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-
-                        <div class="btn-popup-dsc">
-                            <button id="btn-cancel-dsc">Cancel</button>
-                            <button id="btn-save-dsc">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>            
+              
         </main>
 
     </div>
