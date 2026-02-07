@@ -3,12 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sales;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class SalesController extends Controller
 {
+    
+    private function attachTotalNominal($sales) {
+        foreach ($sales as $sale) {
+            foreach ($sale->products as $product) {
+                $product->subtotal_item = $product->product_price * $product->pivot->order_quantity;
+            }
+            $sale->total_nominal = $sale->products->sum('subtotal_item');
+        }
+        return $sales;
+    }
+
     public function sales() {
         $sales = Sales::with(['products', 'customers'])->get();
+        $sales = $this->attachTotalNominal($sales);
         return view("sales", compact("sales"));
     }
 
@@ -23,6 +38,7 @@ class SalesController extends Controller
             ->when($request->status, function ($query) use ($request) {
             return $query->where('sales_status', $request->status);
         })->get();
+ 
         return view('sales', compact('sales'));
     }
 
@@ -42,4 +58,6 @@ class SalesController extends Controller
 
         return view("sale", compact('sale', 'total_akhir'));
     }
+
+    
 }

@@ -5,6 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Order Menu</title>
     <link rel="stylesheet" href="{{ asset('css/order.css') }}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -85,6 +86,17 @@
         </div>
     </div>
 
+
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <span class="material-symbols-outlined">check_circle</span>
+            </div>
+            <h3 id="modalTitle">Berhasil!</h3>
+            <p id="modalMessage">Pesanan Anda telah disimpan.</p>
+            <button onclick="closeMyModal()" class="btn-modal">Oke</button>
+        </div>
+    </div>
 </div>
     
     <script src="{{ asset('js/order.js') }}"></script>

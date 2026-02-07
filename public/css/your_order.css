@@ -1,0 +1,320 @@
+:root {
+  --primary: #d5875085;
+  --bg: #010101;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", "sans-serif";
+  background-color: black;
+  color: #5F3C25;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1, 4rem 7%; 
+  background-color: rgba(1, 1, 1, 0.8);
+  border-bottom: 1px solid #ffffff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+  color: white;
+}
+
+.navbar .navbar-nav a {
+  color: #fff;
+  display: inline-block;
+  font-size: 1.3rem;
+  margin: 0 1rem;
+  margin-top: 10px;
+}
+
+.navbar .navbar-nav a:hover {
+  color: var(--primary);
+}
+
+.navbar .navbar-nav a::after {
+  content: "";
+  display: block;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--primary);
+  transform: scaleX(0);
+  transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(0.5);
+}
+
+.navbar .navbar-extra a {
+  color: #fff;
+  margin: 0 0.5rem;
+}
+
+.navbar .navbar-extra a:hover {
+  color: var(--primary);
+}
+
+.left-part {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.left-part span {
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+}
+
+.logo {
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 5px 0 5px 0 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 15px;
+    margin-right: 10px;
+}
+
+/* USER PROFILE & SUBMENU (Referasi dari home.css) */
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    border-radius: 25px;
+    background-color: #5a321d;
+    box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2);
+}
+
+.user span {
+    font-size: small;
+    cursor: pointer;
+    color: white;
+}
+
+.user img {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.submenu-wrap {
+    position: absolute;
+    top: 8%;
+    right: 1px;
+    width: 180px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: filter 0.2s ease;
+    transition: max-height 0.5;
+}
+
+
+.submenu-wrap.open-menu {
+    max-height: 600px;
+}
+
+.submenu {
+    background: white;
+    padding: 3px;
+    margin: 6px;
+    margin-top: 55px;
+    border-radius: 10px;
+}
+
+.submenu-link {
+    display: flex;
+    align-items: center;
+    color: #5F3C25;
+    gap: 5px;
+    margin: 1px 0;
+    text-decoration: none;
+}
+
+.submenu-link p {
+    width: 50%;
+    margin: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.submenu-link span {
+    width: 20px;
+    padding: 4px;
+    color: #5a321d;
+}
+
+.name{
+    font-weight: 450px;
+    color: black;
+}
+
+.profile{
+    transition: filter 0.2s ease;
+}
+
+
+.img-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+/* MAIN CONTENT  */
+.main-container {
+    padding: 100px 20px 20px 20px;
+}
+
+/* FEATURE & LIST (Tetap dari design order Anda) */
+.main-feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+    width: 100%;
+}
+
+.main-title {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0PX;
+}
+
+.main-title p {
+    font-size: 20px;
+    font-weight: 450;
+    color: white;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 4px 20;
+    margin-bottom: 10px;
+    overflow: hidden;
+} 
+
+.search input {
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 11px 11px;
+    text-align: left;
+    border-radius: 5px 0 0 5px;
+    width: 250px;
+    border: none;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #5a321d;
+    font-family: "Poppins", sans-serif;
+    text-align: left;
+    opacity: 1;
+    
+}
+
+.search button {
+    background: #5a321d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.search button:hover {
+    filter: brightness(0.8);
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    text-decoration: none;
+    color: #5a321d;
+    box-sizing: border-box;
+    margin: 10px 0 10px 0px;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.list:hover {
+    transform: translateY(-3px);
+}
+
+.inner-list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list img {
+    height: 45px;
+    width: 65px;
+    border-radius: 5px;
+    margin: 5px 1px 5px 15px;
+    border: 2px solid #5a321d;
+}
+
+.item {
+    font-weight: 700;
+}
+
+.preview {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.status {
+    padding: 18px 1px;
+
+    background: #5a321d;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    transition: filter 0.2s ease;
+    cursor: pointer;
+    min-width: 60px; 
+    text-align: right;
+}
+
+.pstatus {
+    margin-right: 10px;
+    margin-left: 10px;
+}

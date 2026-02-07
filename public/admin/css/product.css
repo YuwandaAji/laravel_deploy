@@ -292,7 +292,7 @@ body {
 
 .main-info-item {
     display: grid;
-    grid-template-columns: 0.7fr 0.5fr 0.5fr;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 
 }
@@ -313,7 +313,14 @@ body {
     gap: 5px;
 }
 
-.info-order-container {
+.info-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 20px;
+}
+
+.info-bottom {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
@@ -350,9 +357,9 @@ body {
 }
 
 
-.info-right {
+.info- {
     display: grid;
-    grid-template-rows: 0.5fr 1fr;
+    grid-template-rows: 1fr;
     gap: 10px;
     margin-bottom: 0;
 }
@@ -416,7 +423,7 @@ body {
     background-color: #f6f0ed;
     margin-top: 20px;
     padding: 20px;
-    max-height: 495px;
+    max-height: 460px;
     box-sizing: border-box;
     -webkit-column-break-inside: avoid;
     border: 1px solid #5a321d;

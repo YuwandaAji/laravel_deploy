@@ -143,6 +143,8 @@
                                     <span>Id Sales: {{$sale->sales_id}}</span>
                                     <span>Customer: {{ $sale->customers->customer_name}}</span>
                                     <span>{{ $sale->products->count() }} Produk</span>
+                                    <span>Total: Rp {{ number_format($sale->total_nominal, 0, ',', '.') }}</span>
+                                    <span>Waktu: {{ $sale->created_at->format('d M Y, H:i:s') }}</span>
                                 </div>
                             </div>
                         </div>

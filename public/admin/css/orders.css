@@ -412,18 +412,18 @@ li a {
 }
 
 .status {
-    padding: 18px 3px;
+    padding: 18px 1px;
 
     background: #5a321d;
     color: white;
     border-radius: 0 5px 5px 0;
     transition: filter 0.2s ease;
     cursor: pointer;
-    min-width: 100px; 
+    min-width: 60px; 
     text-align: right;
 }
 
 .pstatus {
     margin-right: 10px;
+    margin-left: 10px;
 }
-

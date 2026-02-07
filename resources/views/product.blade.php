@@ -110,11 +110,25 @@
 
             <div class="main-info-item">
                 <div class="info-left">
-                    @if($product->product_img)
-                        <img src={{ asset('storage/'. $product->product_img) }} alt="image-emp" class="image-item" style="width: 450px; max-height: 325px; object-fit: cover;">
-                    @endif
 
-                    <div class="info-order-container" style="margin-top: 10px;">
+                    <div class="info-top">
+                        @if($product->product_img)
+                            <img src={{ asset('storage/'. $product->product_img) }} alt="image-emp" class="image-item" style="width: 450px; max-height: 325px; object-fit: cover;">
+                        @endif
+
+                        <div class="info-item" style="width: 300px; height: 325px; max-height: 325px overflow-y: auto;">
+                            <p class="item-title">Rincian Produk</p>
+                            <div class="info-inti">
+                                <p>Nama: <span>{{$product->product_name}}</span></p>
+                                <p>Harga: <span>Rp {{$product->product_price}}</span></p>
+                                <p>Size: <span>{{$product->product_size}}</span></p>
+                                <p>Deskripsi: <span>{{$product->product_description}}</span></p>
+                            </div>
+                        </div>  
+                    </div>
+                    
+
+                    <div class="info-bottom" style="margin-top: 10px;">
                         <div class="info-order">
                             <p class="order-title">Today Sales</p>
                             <p class="info-text">{{$todaySales}}</p>
@@ -132,24 +146,6 @@
                     </div>
                 </div>
 
-                
-                <div class="info-right">
-
-                    <div class="info-item" style="width: 300px; height: 325px; max-height: 325px overflow-y: auto;">
-                        <p class="item-title">Rincian Produk</p>
-                        <div class="info-inti">
-                            <p>Nama: <span>{{$product->product_name}}</span></p>
-                            <p>Harga: <span>Rp {{$product->product_price}}</span></p>
-                            <p>Size: <span>{{$product->product_size}}</span></p>
-                            <p>Deskripsi: <span>{{$product->product_description}}</span></p>
-                        </div>
-                    </div>
-
-                    <div class="info-diskon">
-                        <p class="diskon-title">Diskon</p>
-                        <p class="diskon-text">-</p>
-                    </div>                    
-                </div>
 
                 <div class="chart">
                     <p class="chart-title">Sales By Month</p>

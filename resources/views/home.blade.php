@@ -32,7 +32,8 @@
             <a href="#Home">Home</a>
             <a href="#about">About</a>
             <a href="#menu">Menu</a>
-            <a href="#contact">Kontak</a>
+            <a href="#contact">Contact</a>
+            <a href={{ url('your_order') }} class="track-link">Your Order</a>
         </div>
 
         <div class="right-part">
@@ -52,6 +53,7 @@
                         <img src="{{ asset('/img/default_profile.png') }}" alt="default_image">
                     @endif
                 </div>
+                
             </div>
 
             <div class="submenu-wrap" id="submenu">

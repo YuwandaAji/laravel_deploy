@@ -396,3 +396,52 @@
             -webkit-appearance: none;
             font-family: "Poppins", sans-serif;
         }
+
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            z-index: 10000; /* Pastikan lebih tinggi dari elemen lain */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6); /* Lebih gelap sedikit */
+            backdrop-filter: blur(5px); /* Efek blur di belakang modal */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #f6f0ed;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: scaleUp 0.3s ease;
+            transform: scale(1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Tombol Modal */
+        .btn-modal {
+            background-color: #5a321d;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .btn-modal:hover {
+            filter: brightness(1.2);
+        }
+

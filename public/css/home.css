@@ -683,8 +683,15 @@ footer .credit a {
     display: flex;
     align-items: center;
     position: relative;
-    gap: 10px;
+    gap: 15px;
     margin-right: 10px;
+}
+
+
+
+.track-link {
+  text-decoration: none;
+  color: white;
 }
 
 .user {

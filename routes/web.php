@@ -30,6 +30,8 @@ Route::post('order_post', [AuthController::class,'order_post']);
 Route::get('profile/edit', [AuthController::class,'edit']);
 Route::get(url('logout'), [AuthController::class,'logout']);
 Route::put('profile/edit/update', [AuthController::class,'update']);
+Route::get('your_order', [AuthController::class,'your_order']);
+Route::get('your_order_search', [AuthController::class,'your_order_search']);
 
 
 

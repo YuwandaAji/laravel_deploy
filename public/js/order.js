@@ -83,25 +83,23 @@ function renderCart() {
 // Muncul saat klik tombol "PLACE ORDER"
 window.processCheckout = async function() {
     if (Object.keys(cart).length === 0) {
-        alert('Keranjang masih kosong!');
+        window.showMyModal('Keranjang masih kosong!'); // Menggunakan modal custom
         return;
     }
 
-    // Ambil nilai dari input hidden/dropdown yang baru
     const orderMethod = document.getElementById('order_method').value;
     const payMethod = document.getElementById('pay_method').value;
 
-    // Validasi sederhana jika user belum memilih
     if (!orderMethod || !payMethod) {
-        alert('Silakan pilih metode pesan dan metode pembayaran terlebih dahulu!');
+        window.showMyModal('Silakan pilih metode pesan dan metode pembayaran terlebih dahulu!');
         return;
     }
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     
     const orderData = {
-        order_type: orderMethod,    // Mengirim 0 (Online) atau 1 (Cafe)
-        payment_type: payMethod,    // Mengirim Cash, Ovo, dll
+        order_type: orderMethod,
+        payment_type: payMethod,
         total_price: window.currentTotal,
         items: Object.entries(cart).map(([id, item]) => ({
             id: id,
@@ -124,16 +122,21 @@ window.processCheckout = async function() {
         const result = await response.json();
 
         if (response.ok) {
-            alert('Pesanan Berhasil Dibuat!');
+            // Tampilkan modal custom untuk sukses
+            window.showMyModal('Pesanan Berhasil Dibuat! Silakan cek profil Anda.');
+            
+            // Kosongkan keranjang di tampilan
             cart = {};
             renderCart();
-            window.location.reload(); // Reload untuk reset tampilan
+            
+            // Catatan: window.location.reload() dipindahkan ke fungsi closeMyModal
         } else {
-            alert('Gagal: ' + (result.message || 'Terjadi kesalahan'));
+            // Tampilkan modal custom untuk error dari server
+            window.showMyModal('Gagal: ' + (result.message || 'Terjadi kesalahan'));
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Terjadi kesalahan koneksi ke server.');
+        window.showMyModal('Terjadi kesalahan koneksi ke server.');
     }
 };
 
@@ -194,3 +197,28 @@ document.addEventListener('input', function (e) {
     });
   }
 });
+
+
+window.showMyModal = function(message) {
+    const modal = document.getElementById('customModal');
+    const msgElem = document.getElementById('modalMessage');
+    
+    if (modal && msgElem) {
+        msgElem.innerText = message;
+        modal.style.display = 'flex'; // Pakai flex supaya posisi ke tengah
+    } else {
+        console.error("Elemen modal tidak ditemukan di HTML!");
+    }
+};
+
+window.closeMyModal = function() {
+    const modal = document.getElementById('customModal');
+    const message = document.getElementById('modalMessage').innerText;
+    
+    modal.style.display = 'none';
+
+    // Jika pesan mengandung kata "Berhasil", baru lakukan redirect/reload
+    if (message.includes('Berhasil')) {
+        window.location.href = '/home'; 
+    }
+};
