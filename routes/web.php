@@ -16,22 +16,29 @@ use App\Http\Controllers\EmployeesController;
 
 
 Route::get('/', [AuthController::class, 'front']);
-//Customer
-Route::get( 'registration', [AuthController::class, 'registration']);
-Route::post('register_post', [AuthController::class,'register_post']);
+// --- Authentication ---
+Route::get('registration', [AuthController::class, 'registration']);
+Route::post('register_post', [AuthController::class, 'register_post']);
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login_post', [AuthController::class, 'login_post']);
+Route::post('logout', [ProfileController::class, 'destroy'])->name('logout');
 
-Route::get( 'login', [AuthController::class, 'login']);
-Route::post('login_post', [AuthController::class,'login_post']);
-Route::get('home', [AuthController::class,'home']);
-Route::get('home', [AuthController::class,'products']);
-Route::get('order', [AuthController::class,'order']);
-Route::get('profile', [AuthController::class,'profile'])->middleware('auth');
-Route::post('order_post', [AuthController::class,'order_post']);
-Route::get('profile/edit', [AuthController::class,'edit']);
-Route::get(url('logout'), [AuthController::class,'logout']);
-Route::put('profile/edit/update', [AuthController::class,'update']);
-Route::get('your_order', [AuthController::class,'your_order']);
-Route::get('your_order_search', [AuthController::class,'your_order_search']);
+// --- Home & Products (PASTIKAN TIDAK ADA DUPLIKAT ALAMAT) ---
+Route::get('home', [AuthController::class, 'home'])->name('home');
+Route::get('products', [AuthController::class, 'products'])->name('products.index');
+
+// --- Customer Profile (Hanya bisa dibuka kalau sudah login) ---
+Route::middleware('auth:customer')->group(function () {
+    Route::get('profile', [ProfileController::class, 'show'])->name('customer.profile');
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('customer.edit');
+    Route::put('profile/edit/update', [ProfileController::class, 'update'])->name('customer.update');
+});
+
+// --- Order System ---
+Route::get('order', [AuthController::class, 'order']);
+Route::post('order_post', [AuthController::class, 'order_post']);
+Route::get('your_order', [AuthController::class, 'your_order']);
+Route::get('your_order_search', [AuthController::class, 'your_order_search']);
 
 
 
