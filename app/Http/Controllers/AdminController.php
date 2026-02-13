@@ -29,10 +29,9 @@ class AdminController extends Controller
         if(Auth::guard('employees')->attempt($data)) {
             $request->session()->regenerate();
             return redirect(url('admin/dashboard'))->with('success','Login Succesfully');
-        }else {
-            
-            dd('Login Gagal, data tidak cocok dengan database atau guard salah', $data);
-        } 
+        }
+
+        return back()->with('errorLogin', 'Email atau Password yang Anda masukkan salah.');
     
     }
 

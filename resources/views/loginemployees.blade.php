@@ -40,16 +40,15 @@
 
                 <input type="email" placeholder="Email" id="email" name="email" value="{{ old('email') }}" required>
                 <input type="password" placeholder="Password" id="password" name="password" value="{{ old('password') }}" required>
+                
+                @if (session('errorLogin'))
+                    <small class="error-text">{{ session('errorLogin') }}</small>
+                @endif
+                
                 <a href="#">Forgot your password?</a>
                 <button type="submit" onclick="signinbtn()">Sign In</button>
             </form>
-            @if ($errors->any())
-                <div style="color: red; margin-bottom: 10px;">
-                    <ul>
-                        <li>{{ $errors->first() }}</li> 
-                    </ul>
-                </div>
-            @endif
+            
         </div>
 
         <!--Sign In End-->

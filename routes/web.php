@@ -25,7 +25,7 @@ Route::post('login_post', [AuthController::class,'login_post']);
 Route::get('home', [AuthController::class,'home']);
 Route::get('home', [AuthController::class,'products']);
 Route::get('order', [AuthController::class,'order']);
-Route::get('profile', [AuthController::class,'profile'])->middleware('auth');
+Route::get('profile', [AuthController::class, 'show'])->middleware('auth')->name('profile');
 Route::post('order_post', [AuthController::class,'order_post']);
 Route::get('profile/edit', [AuthController::class,'edit']);
 Route::get(url('logout'), [AuthController::class,'logout']);

@@ -222,3 +222,11 @@ body {
 .container.active .toggle-right {
     transform: translateX(200%);
 }
+
+.error-text {
+    color: #e74c3c; 
+    font-size: 11px;
+    margin-top: 5px;
+    align-self: flex-start; 
+    font-weight: 500;
+}

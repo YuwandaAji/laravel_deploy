@@ -8,9 +8,12 @@ use App\Models\Sales;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Customer;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -58,27 +61,7 @@ class AuthController extends Controller
             return redirect('home')->with('success','Login Succesfully');
         }
 
-        return back()->with('errorLogin','Login Failed');
-    }
-
-    public function login_post_admin(Request $request) {
-        $request->validate([
-            'email' => 'required|email|unique:customer,customer_email',
-            'password' => 'required|min:5|max:50',
-        ]);
-
-        $check = $request->all();
-        $data = [
-            'email'=> $check['email'],
-            'password'=> $check['password'],
-        ];
-
-        if(Auth::guard('employees')->attempt($data)) {
-            return redirect(url('admin/dashboard'))->with('success','Login Succesfully');
-        }else {
-            return back()->with('errorLogin','Login Failed');
-        } 
-    
+        return back()->with('errorLogin', 'Email atau Password yang Anda masukkan salah.');
     }
 
     public function home() {
@@ -108,8 +91,7 @@ class AuthController extends Controller
         }
 
         try {
-            // Gunakan Transaction agar jika salah satu stok gagal dikurangi, 
-            // data Sales tidak akan tersimpan (mencegah data error)
+  
             \DB::transaction(function () use ($request) {
 
                 $sales = new Sales();
@@ -151,47 +133,71 @@ class AuthController extends Controller
         }
     }
 
-    public function profile() {
-        $customer = Auth::user();
-        return view('profile', compact('customer'));
-    }
-
-    public function edit() {
+    public function show(Request $request)
+    {
         $customer = Auth::guard('web')->user();
-        return view('edit', compact('customer'));
-    }
-    
 
-    public function logout(Request $request) {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/login');
+        if (!$customer) {
+            return redirect('login')->with('error', 'Please login first.');
+        }
+
+        $history = Sales::with('products')
+                    ->where('customer_id', $customer->customer_id)
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+
+        return view('profile', [
+            'customer' => $customer,
+            'history' => $history,
+        ]);
     }
 
-    public function update(Request $request) {
-        $customer_id = Auth::guard('web')->id();
-        $customer = Customer::find($customer_id);
+    /**
+     * Menampilkan form edit profil.
+     */
+    public function edit(Request $request): View
+    {
+
+        if (Auth::guard('web')->check()) {
+            return view('edit', [
+                'customer' => Auth::guard('web')->user(),
+            ]);
+        }
+
+
+        return view('edit', [
+            'user' => $request->user(),
+        ]);
+    }
+
+    /**
+     * Update the user's profile information.
+     * Update data profil customer (termasuk foto).
+     */
+    public function update(Request $request): RedirectResponse {
+        $customer = Auth::guard('web')->user();
 
         $request->validate([
-            'customer_name' => 'required|max:255',
-            'customer_address' => 'nullable',
-            'customer_img' => 'image|mimes:jpeg,png,jpg|max:2048' // max 2MB
+            'customer_name' => 'required|string|max:255',
+            'customer_address' => 'nullable|string',
+            'customer_img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $customer->customer_name = $request->customer_name;
         $customer->customer_address = $request->customer_address;
 
-        $imageName = 'default_profile.png';
         if ($request->hasFile('customer_img')) {
-            $imageName = $request->file('customer_img')->store('customer_img', 'public');
+            $file = $request->file('customer_img');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/customer_img'), $filename);
+            $customer->customer_img = 'customer_img/' . $filename;
         }
-        $customer->customer_img = $imageName;
 
-        $customer->save();
+        $customer->save(); 
 
-        return redirect('profile')->with('success', 'Profil berhasil diperbarui!');
+        return Redirect::route('profile')->with('status', 'profile-updated');
     }
+
     
     public function front() {
         $products = Product::all();

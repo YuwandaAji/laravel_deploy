@@ -24,6 +24,7 @@ body {
     width: 768px;
     max-width: 100%;
     min-height: 480px;
+
 }
 
 .container p{
@@ -70,6 +71,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    margin-top: 50px;
     padding: 0 40px;
     height: 100%;
 }
@@ -221,4 +223,12 @@ body {
 
 .container.active .toggle-right {
     transform: translateX(200%);
+}
+
+.error-text {
+    color: #e74c3c; 
+    font-size: 11px;
+    margin-top: 5px;
+    align-self: flex-start; 
+    font-weight: 500;
 }

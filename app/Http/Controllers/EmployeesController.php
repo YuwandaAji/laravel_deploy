@@ -129,12 +129,12 @@ class EmployeesController extends Controller
     $imageName = $employee->employee_img; 
 
     if ($request->hasFile('employee_img')) {
-        // Hapus foto lama jika ada (opsional agar storage tidak penuh)
+
         if ($employee->employee_img && $employee->employee_img != 'default_profile.png') {
             Storage::disk('public')->delete($employee->employee_img);
         }
         
-        // Simpan foto baru
+
         $imageName = $request->file('employee_img')->store('employee_img', 'public');
     }
     $employee->employee_name = trim($request->name);
@@ -230,10 +230,9 @@ class EmployeesController extends Controller
         if(Auth::guard('employees')->attempt($data)) {
             $request->session()->regenerate();
             return redirect(url('employees/cashier'))->with('success','Login Succesfully');
-        }else {
-            
-            dd('Login Gagal, data tidak cocok dengan database atau guard salah', $data);
-        } 
+        }
+
+        return back()->with('errorLogin', 'Email atau Password yang Anda masukkan salah.');
     }
 
     public function logout() {
