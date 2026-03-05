@@ -236,13 +236,13 @@ function addRow() {
     tbody.appendChild(row);
 }
 
-// 2. Fungsi Hapus Baris
+
 function deleteRow(btn) {
     const row = btn.closest('tr');
     row.remove();
 }
 
-// 3. AUTO RUN: Pasang 1 baris kosong saat halaman dibuka
+
 document.addEventListener("DOMContentLoaded", function() {
 
     const tbody = document.getElementById("schedule-body");

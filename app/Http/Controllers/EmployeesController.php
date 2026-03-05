@@ -43,12 +43,13 @@ class EmployeesController extends Controller
         'email' => 'required|email|unique:employee,employee_email',
         'employee_img' => 'image|mimes:jpeg,png,jpg|max:2048',
         'number_phone' => 'required|unique:employee,employee_number',
+        'password' => 'required|min:5|max:50',
         'gender' => 'required|boolean',
         'address'=> 'required|string',
         'birth_date' => 'required|date|before:today',
         'role' => 'required|in:Manager,Barista,Waiter,Cashier,Courier',
         'salary' => 'required',
-        'join_date' => 'required|date|before:today',
+        'join_date' => 'required|date',
         'days'=> 'required|array',
         'shifts' => 'required|array'
     ]);
@@ -84,7 +85,7 @@ class EmployeesController extends Controller
                                 ->first();
 
             if ($schedule) {
-                // Ini akan mengisi tabel pivot employee_schedule
+
                 $employee->schedules()->attach($schedule->schedule_id);
             }
         }

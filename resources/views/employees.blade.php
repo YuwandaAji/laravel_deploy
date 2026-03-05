@@ -309,7 +309,7 @@
                         </div>
 
                         <div class="btn-popup">
-                            <button id="btn-cancel">Cancel</button>
+                            <button id="btn-cancel" type="button">Cancel</button>
                             <button id="btn-save" type="submit">Save</button>
                         </div>
                     </div>
