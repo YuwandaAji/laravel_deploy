@@ -28,4 +28,4 @@ RUN php artisan key:generate || true \
 
 EXPOSE 8080
 
-CMD php artisan db:seed --class=AdminSeeder && php artisan serve --host=0.0.0.0 --port=8080
+CMD php artisan serve --host=0.0.0.0 --port=8080
