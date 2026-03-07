@@ -122,7 +122,7 @@ class EmployeesController extends Controller
         'birth_date' => 'required|date|before:today',
         'role' => 'required|in:Manager,Barista,Waiter,Cashier,Courier',
         'salary' => 'required',
-        'join_date' => 'required|date|before:today',
+        'join_date' => 'required|date|before_or_equal:today',
         'days'=> 'required|array',
         'shifts' => 'required|array'
     ]);
