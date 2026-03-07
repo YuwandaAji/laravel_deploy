@@ -24,7 +24,8 @@ RUN composer install \
 RUN php artisan key:generate || true \
     && php artisan config:clear \
     && php artisan route:clear \
-    && php artisan view:clear
+    && php artisan view:clear \
+    && php artisan storage:link
 
 EXPOSE 8080
 
