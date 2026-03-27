@@ -111,7 +111,7 @@
             <div class="main-info-item">
                 
                 @if($payment->payment_img)
-                    <img src={{ asset('admin/img/'. $payment->payment_img) }} alt="image-emp" class="image-pay">
+                    <img src={{ asset('admin/img/payment_img/' . $payment->payment_img) }} alt="image-emp" class="image-pay">
                 @endif
 
                 <div class="info-right">
