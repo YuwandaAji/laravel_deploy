@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create("sales", function (Blueprint $table) {
             $table->id("sales_id");
             $table->foreignId("customer_id")->constrained("customer", "customer_id",indexName:"sales_customer");
-            $table->foreignId("payment_id")->constrained("payment","payment_id",indexName:"slaes_payment");
+            $table->foreignId("payment_id")->constrained("payment","payment_id",indexName:"sales_payment");
             $table->enum("sales_status", ["New", "Prepared", "Delivery", "Done"]);
             $table->boolean("pay_status");
             $table->boolean("order_method");
