@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum("employee_role", ["Waiter", "Barista", "Manager", "Courier", "Cashier"]);
             $table->integer("employee_salary");
             $table->date("employee_date_join");
-            $table->string("employee_img");
+            $table->string("employee_img")->nullable();
             $table->timestamps();
         });
     }

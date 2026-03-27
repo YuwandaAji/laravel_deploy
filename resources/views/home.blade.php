@@ -37,13 +37,7 @@
         </div>
 
         <div class="right-part">
-            <a href="{{ url('order') }}">
-                <i data-feather="shopping-bag"></i>
-            </a>
-            <a href="{{ url('order') }}">
-                <i data-feather="shopping-cart"></i>
-            </a>
-            <a href="#" id="coffe-menu"><i data-feather="menu"></i></i></a>
+          
             <div class="header-right">
                 <div class="user" onclick="subMenu()">
                     <span>{{ Auth::guard('web')->user()->customer_name }}</span>

@@ -25,14 +25,14 @@ class AuthController extends Controller
     public function register_post(Request $request) {
         $customer = request()->validate([
             'name' => 'required|max:255',
-            'email' => 'required|email:dns|unique:customer,customer_email',
+            'register_email' => 'required|email:dns|unique:customer,customer_email',
             'password' => 'required|min:5|max:50',
         ]);
         $customer = new Customer;
         $customer -> customer_name = trim( $request->name );
-        $customer -> customer_email = trim( $request->email );
+        $customer -> customer_email = trim( $request->register_email );
         $customer -> password = Hash::make( $request->password );
-        $customer -> customer_img = 'customer_img/default_profile.png';
+        $customer -> customer_img = null;
         $customer -> save();
 
         Auth::login($customer);
@@ -103,24 +103,22 @@ class AuthController extends Controller
                 $sales->save();
 
                 foreach ($request->items as $item) {
-                    // 1. Simpan ke tabel Order (Pivot)
+
                     $order = new Order();
                     $order->sales_id = $sales->sales_id;
                     $order->product_id = $item['id'];
                     $order->order_quantity = $item['qty'];
                     $order->save();
 
-                    // 2. LOGIKA PENGURANGAN STOK
-                    // Ambil data produk berdasarkan ID dari item yang dibeli
                     $product = Product::find($item['id']);
                     
                     if ($product) {
-                        // Cek stok cukup atau tidak (Opsional tapi sangat disarankan)
+
                         if ($product->product_stock < $item['qty']) {
                             throw new \Exception("Stok produk {$product->product_name} tidak mencukupi.");
                         }
                         
-                        // Kurangi stoknya
+
                         $product->decrement('product_stock', $item['qty']);
                     }
                 }
@@ -152,9 +150,7 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Menampilkan form edit profil.
-     */
+   
     public function edit(Request $request): View
     {
 
@@ -170,10 +166,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     * Update data profil customer (termasuk foto).
-     */
     public function update(Request $request): RedirectResponse {
         $customer = Auth::guard('web')->user();
 

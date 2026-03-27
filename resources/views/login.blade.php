@@ -18,8 +18,6 @@
 
         <div class="form-container sign-up">
             
-            <span style="color: yellow">{{ $errors->first('email') }}<br></span>
-            <span style="color: red">{{ $errors->first('password') }}<br></span>
 
             @include('message')
             <form method="POST" action="{{ url('register_post') }}">
@@ -36,18 +34,16 @@
                 </div>
             
                 <input type="text" placeholder="Name" id="username" name="name" value="{{ old('name') }}" required >
-                <input type="email" placeholder="Email" id="emailnew" name="email" value="{{ old('email') }}" required>
+                <input type="email" placeholder="Email" id="emailnew" name="register_email" value="{{ old('register_email') }}" required>
                 <input type="password" placeholder="Password" id="passwordnew" name="password" value="{{ old('password') }}" required>
                 <button type="submit" onclick="signupbtn()">Sign Up</button>
+
+                @if (session('errorLogin'))
+                    <small class="error-text">{{ session('errorLogin') }}</small>
+                @endif
             </form>
 
-            @if ($errors->any())
-                <div style="color: red; margin-bottom: 10px;">
-                    <ul>
-                        <li>{{ $errors->first() }}</li> 
-                    </ul>
-                </div>
-            @endif
+ 
         </div>
 
         <!--SignUp End-->
