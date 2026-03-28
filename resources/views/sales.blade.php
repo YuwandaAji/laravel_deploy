@@ -131,7 +131,7 @@
                     <a href={{ url("admin/sales/$sale->sales_id") }} class="list">
                         <div class="inner-list">
                             @if($sale->products->first() && $sale->products->first()->product_img)
-                                <img src="{{ $product->product_img }}" alt="image-emp" id="img-view" class="image-item">
+                                <img src="{{ $sale->products->first()->product_img }}" alt="image-emp" id="img-view" class="image-item">
                             @endif
                                             
                             <div class="inner-list-text">
