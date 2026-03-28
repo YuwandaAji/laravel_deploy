@@ -147,7 +147,7 @@
                                 <div class="list">
                                     <div class="inner-list">
                                         @if($product->product_img)
-                                            <img src={{ asset('storage/'. $product->product_img) }} alt="image-emp">
+                                            <img src="{{ $product->product_img }}" alt="image-produk">
                                         @endif
                                         <div class="inner-list-text">
                                             <span class="item">{{$product->product_name}}</span>
