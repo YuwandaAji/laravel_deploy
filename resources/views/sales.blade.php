@@ -32,7 +32,7 @@
                 <div class="user" onclick="subMenu()">
                     <span>{{ Auth::guard('employees')->user()->employee_name }}</span>
                     @if(Auth::guard('employees')->user()->employee_img)
-                        <img src="{{ asset('storage/' . Auth::guard('employees')->user()->employee_img) }}" alt="profil_image">
+                        <img src="{{ Auth::guard('employees')->user()->employee_img }}" alt="profil_image">
                     @else
                         <img src="{{ asset('admin/img/default_profile.png') }}" alt="default_image">
                     @endif
@@ -131,8 +131,9 @@
                     <a href={{ url("admin/sales/$sale->sales_id") }} class="list">
                         <div class="inner-list">
                             @if($sale->products->first() && $sale->products->first()->product_img)
-                                <img src={{ asset('storage/'. $sale->products->first()->product_img) }} alt="image-emp">
+                                <img src="{{ $product->product_img }}" alt="image-emp" id="img-view" class="image-item">
                             @endif
+                                            
                             <div class="inner-list-text">
                                 <span class="item">{{ $sale->products->first()->product_name ?? 'No Product' }}
                                     @if($sale->products->count() > 1)

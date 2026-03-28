@@ -101,7 +101,7 @@
                     <a href={{ url("your_order/$sale->sales_id") }} class="list">
                         <div class="inner-list">
                             @if($sale->products->first() && $sale->products->first()->product_img)
-                                <img src={{ asset('storage/'. $sale->products->first()->product_img) }} alt="image-emp">
+                                <img src="{{ $sale->products->first()->product_img ?? asset('admin/img/default_profile.png') }}" alt="image-emp">
                             @endif
                             <div class="inner-list-text">
                                 <span class="item">{{ $sale->products->first()->product_name ?? 'No Product' }}

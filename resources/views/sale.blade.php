@@ -37,7 +37,7 @@
                 <div class="user" onclick="subMenu()">
                     <span>{{ Auth::guard('employees')->user()->employee_name }}</span>
                     @if(Auth::guard('employees')->user()->employee_img)
-                        <img src="{{ asset('storage/' . Auth::guard('employees')->user()->employee_img) }}" alt="profil_image">
+                        <img src="{{ Auth::guard('employees')->user()->employee_img }}" alt="profil_image">
                     @else
                         <img src="{{ asset('admin/img/default_profile.png') }}" alt="default_image">
                     @endif
@@ -117,7 +117,7 @@
             <div class="main-info-order">
                 <div class="info-left">
                     @if($sale->products->first() && $sale->products->first()->product_img)
-                        <img src={{ asset('storage/'. $sale->products->first()->product_img) }} alt="image-emp" class="image-order" style="width: 470px; max-height: 325px; object-fit: cover;">
+                        <img src="{{ $sale->products->first()->product_img ?? asset('admin/img/default_profile.png') }}" alt="image-emp" class="image-order" style="width: 470px; max-height: 325px; object-fit: cover;">
                     @endif
 
                     <div class="status-buy">
@@ -155,7 +155,7 @@
                             @foreach ($sale->products as $product)
                                 <div class="list">
                                     <div class="inner-list">
-                                        <img src="{{ asset('storage/' . $product->product_img) }}" alt="">
+                                        <img src="{{ $product->product_img ?? asset('admin/img/default_profile.png') }}" alt="">
                                         <div class="inner-list-text">
                                             <span class="item">{{ $product->product_name }}</span>
                                             <div class="preview">

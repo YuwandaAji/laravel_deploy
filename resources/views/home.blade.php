@@ -104,8 +104,9 @@
         @foreach ($products as $product)
             <a class="menu-card" href={{ url('order') }} style="text-decoration: none; color: white;">
                 @if($product->product_img)
-                    <img src={{ asset('storage/'. $product->product_img) }} alt="image-emp" class="img-item" style='width: 250px; height: 250px; border-radius:50%;'>
+                    <img src="{{ $product->product_img }}" alt="image-emp" class="img-item" style='width: 250px; height: 250px; border-radius:50%;'>
                 @endif
+
                 <h3 class="menu-card-title">- {{$product->product_name}} -</h3>
                 <p class="menu-card-price">Rp {{$product->product_price}}</p>
             </a>

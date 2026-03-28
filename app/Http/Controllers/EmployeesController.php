@@ -16,6 +16,29 @@ class EmployeesController extends Controller
         return view("employees", compact("employees"));
     }
 
+    private function uploadToCloudinary($file)
+    {
+        $cloudName = env('CLOUDINARY_CLOUD_NAME');
+        $apiKey = env('CLOUDINARY_API_KEY');
+        $apiSecret = env('CLOUDINARY_API_SECRET');
+
+        $timestamp = time();
+        $signature = sha1("timestamp={$timestamp}{$apiSecret}");
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->post("https://api.cloudinary.com/v1_1/{$cloudName}/image/upload", [
+            'multipart' => [
+                ['name' => 'file', 'contents' => fopen($file->getRealPath(), 'r'), 'filename' => $file->getClientOriginalName()],
+                ['name' => 'api_key', 'contents' => $apiKey],
+                ['name' => 'timestamp', 'contents' => $timestamp],
+                ['name' => 'signature', 'contents' => $signature],
+            ]
+        ]);
+
+        $result = json_decode($response->getBody(), true);
+        return $result['secure_url'];
+    }
+
     public function employee($employee_id) {
         $employee = Employee::with('schedules')->findOrFail($employee_id);
 
@@ -56,7 +79,7 @@ class EmployeesController extends Controller
 
     $imageName = 'default_profile.png';
     if ($request->hasFile('employee_img')) {
-        $imageName = $request->file('employee_img')->store('employee_img', 'public');
+        $imageName = $this->uploadToCloudinary($request->file('employee_img'));
     }
 
     $employee = new Employee;

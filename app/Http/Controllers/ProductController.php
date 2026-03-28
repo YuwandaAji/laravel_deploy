@@ -15,6 +15,29 @@ class ProductController extends Controller
         return view("products", compact("products"));
     }
 
+    private function uploadToCloudinary($file)
+    {
+        $cloudName = env('CLOUDINARY_CLOUD_NAME');
+        $apiKey = env('CLOUDINARY_API_KEY');
+        $apiSecret = env('CLOUDINARY_API_SECRET');
+
+        $timestamp = time();
+        $signature = sha1("timestamp={$timestamp}{$apiSecret}");
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->post("https://api.cloudinary.com/v1_1/{$cloudName}/image/upload", [
+            'multipart' => [
+                ['name' => 'file', 'contents' => fopen($file->getRealPath(), 'r'), 'filename' => $file->getClientOriginalName()],
+                ['name' => 'api_key', 'contents' => $apiKey],
+                ['name' => 'timestamp', 'contents' => $timestamp],
+                ['name' => 'signature', 'contents' => $signature],
+            ]
+        ]);
+
+        $result = json_decode($response->getBody(), true);
+        return $result['secure_url'];
+    }
+
     public function products_add(Request $request) {
         $request->validate([
             'name' => 'required',
@@ -26,9 +49,9 @@ class ProductController extends Controller
             'description'=> 'required',
         ]);
 
-        $imageName = 'default_profile.png';
+        $imageName = null;
         if ($request->hasFile('product_img')) {
-            $imageName = $request->file('product_img')->store('product_img', 'public');
+            $imageName = $this->uploadToCloudinary($request->file('product_img'));
         }
 
         $product = new Product();
@@ -121,13 +144,7 @@ class ProductController extends Controller
         $product->product_price = str_replace('.', '', $request->price);
 
         if ($request->hasFile('product_img')) {
-
-            if ($product->product_img && $product->product_img != 'default_profile.png') {
-                Storage::disk('public')->delete($product->product_img);
-            }
-
-            $imageName = $request->file('product_img')->store('product_img', 'public');
-            $product->product_img = $imageName;
+            $product->product_img = $this->uploadToCloudinary($request->file('product_img'));
         }
 
         $product->save();
@@ -140,10 +157,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($product_id);
 
         $product->sales()->detach();
-
-        if ($product->product_img && $product->product_img != 'default_profile.png') {
-            Storage::disk('public')->delete($product->product_img);
-        }
 
         $product->delete();
 

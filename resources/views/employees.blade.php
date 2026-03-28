@@ -35,7 +35,7 @@
                 <div class="user" onclick="subMenu()">
                     <span>{{ Auth::guard('employees')->user()->employee_name }}</span>
                     @if(Auth::guard('employees')->user()->employee_img)
-                        <img src="{{ asset('storage/' . Auth::guard('employees')->user()->employee_img) }}" alt="profil_image">
+                        <img src="{{ Auth::guard('employees')->user()->employee_img }}" alt="profil_image">
                     @else
                         <img src="{{ asset('admin/img/default_profile.png') }}" alt="default_image">
                     @endif
@@ -137,7 +137,9 @@
                     <div class="card">
                         <a href={{ url("admin/employees/$employee->employee_id") }}  class="card-link">
                             @if($employee->employee_img)
-                                <img src={{ asset('storage/'. $employee->employee_img) }} alt="image-emp">
+                                <img src="{{ $employee->employee_img }}" alt="image-emp" class="image-emp">
+                            @else
+                                <img src="{{ asset('admin/img/default_profile.png') }}" alt="image-emp" class="image-emp">
                             @endif
                             <p class="name-emp">{{$employee->employee_name}}</p>
                             <p class="position-emp">{{$employee->employee_role}}</p>
