@@ -299,8 +299,8 @@ body {
 
 .image-item {
     width: 450;
-    max-height: 300px; /* Atur tinggi maksimal sesuai selera */
-    object-fit: cover; /* Agar gambar tidak gepeng saat dikecilkan */
+    max-height: 300px; 
+    object-fit: cover; 
     border-radius: 10px;
     margin: 20px 0 0 0;
     border: 3px solid #5a321d;

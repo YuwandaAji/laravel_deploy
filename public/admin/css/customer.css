@@ -266,11 +266,11 @@ body {
 .image-cust {
     
     width: 450px;
-    height: 350px; /* Mengambil sisa ruang yang tersedia */
-    min-height: 250px; /* Sesuaikan dengan perkiraan tinggi box Data Customer */
-    object-fit: cover; /* Agar gambar tidak gepeng saat ditarik */
+    height: 350px; 
+    min-height: 250px; 
+    object-fit: cover; 
     border-radius: 8px;
-    border: 1px solid #5a321d;
+    border: 3px solid #5a321d;
 }
 
 .info-cust-container {
