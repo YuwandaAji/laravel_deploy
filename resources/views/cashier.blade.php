@@ -82,9 +82,9 @@
                         <a href={{ url("employees/cashier/$sale->sales_id") }}>
                             <span class="name">{{ $sale->customers->customer_name }}</span>
                             @if($sale->customers->customer_img)
-                                <img src={{ asset('storage/'. $sale->customers->customer_img) }} alt="image-emp" class="custpic">
+                                <img src="{{ $sale->customers->customer_img }}" alt="image-emp" class="custpic">
                             @else
-                                <img src="{{ asset('employees/img/default_profile.png') }}" alt="default_image" class="custpic">
+                                <img src="{{ asset('img/default_profile.png') }}" alt="default_image" class="custpic">
                             @endif
                         </a>
                     </div>
@@ -115,9 +115,9 @@
                         <a href={{ url("employees/cashier/$sale->sales_id") }}>
                             <span class="name">{{ $sale->customers->customer_name }}</span>
                             @if($sale->customers->customer_img)
-                                <img src={{ asset('storage/'. $sale->customers->customer_img) }} alt="image-emp" class="custpic">
+                                <img src="{{ $sale->customers->customer_img }}" alt="image-emp" class="custpic">
                             @else
-                                <img src="{{ asset('employees/img/default_profile.png') }}" alt="default_image" class="custpic">
+                                <img src="{{ asset('img/default_profile.png') }}" alt="default_image" class="custpic">
                             @endif
                         </a>
                     </div>
@@ -148,9 +148,9 @@
                         <a href={{ url("employees/cashier/$sale->sales_id") }}>
                             <span class="name">{{ $sale->customers->customer_name }}</span>
                             @if($sale->customers->customer_img)
-                                <img src={{ asset('storage/'. $sale->customers->customer_img) }} alt="image-emp" class="custpic">
+                                <img src="{{ $sale->customers->customer_img }}" alt="image-emp" class="custpic">
                             @else
-                                <img src="{{ asset('employees/img/default_profile.png') }}" alt="default_image" class="custpic">
+                                <img src="{{ asset('img/default_profile.png') }}" alt="default_image" class="custpic">
                             @endif
                         </a>
                     </div>
@@ -181,9 +181,9 @@
                         <a href={{ url("employees/cashier/$sale->sales_id") }}>
                             <span class="name">{{ $sale->customers->customer_name }}</span>
                             @if($sale->customers->customer_img)
-                                <img src={{ asset('storage/'. $sale->customers->customer_img) }} alt="image-emp" class="custpic">
+                                <img src="{{ $sale->customers->customer_img }}" alt="image-emp" class="custpic">
                             @else
-                                <img src="{{ asset('employees/img/default_profile.png') }}" alt="default_image" class="custpic">
+                                <img src="{{ asset('img/default_profile.png') }}" alt="default_image" class="custpic">
                             @endif
                         </a>
                     </div>
