@@ -171,7 +171,7 @@
                             <div class="img-container">
                                 
                                 @if($product->product_img)
-                                    <img src="{{ $product->product_img }}" alt="image-emp" id="img-view" class="image-item">
+                                    <img src="{{ $product->product_img }}" alt="image-emp" id="img-preview" class="image-item">
                                 @endif
                                 
                                 <input type="file" accept="image/*" name="product_img" id="input-file" hidden>

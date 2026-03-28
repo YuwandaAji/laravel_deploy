@@ -53,7 +53,7 @@ buttonCancel.addEventListener("click", () => {
 
 // PREVIEW IMAGE UPLOAD
 
-const imgView = document.getElementById("img-view");
+const imgView = document.getElementById("img-preview");
 const inputFile = document.getElementById("input-file");
 
 document.querySelector(".img-container").addEventListener("click", () => {
