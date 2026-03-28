@@ -7,7 +7,7 @@ use App\Models\Presence;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+
 
 class EmployeesController extends Controller
 {
@@ -77,7 +77,7 @@ class EmployeesController extends Controller
         'shifts' => 'required|array'
     ]);
 
-    $imageName = 'default_profile.png';
+    $imageName = null;
     if ($request->hasFile('employee_img')) {
         $imageName = $this->uploadToCloudinary($request->file('employee_img'));
     }
@@ -150,16 +150,10 @@ class EmployeesController extends Controller
         'shifts' => 'required|array'
     ]);
 
-    $imageName = $employee->employee_img; 
 
     if ($request->hasFile('employee_img')) {
 
-        if ($employee->employee_img && $employee->employee_img != 'default_profile.png') {
-            Storage::disk('public')->delete($employee->employee_img);
-        }
-        
-
-        $imageName = $request->file('employee_img')->store('employee_img', 'public');
+        $employee->employee_img = $this->uploadToCloudinary($request->file('employee_img'));
     }
     $employee->employee_name = trim($request->name);
     $employee->employee_email = trim($request->email); 
@@ -168,7 +162,6 @@ class EmployeesController extends Controller
     $employee->employee_address = $request->address;
     $employee->employee_date_born = $request->birth_date;
     $employee->employee_role = $request->role;
-    $employee->employee_img = $imageName;
 
     $employee->employee_salary = str_replace('.', '', $request->salary);
     
@@ -224,10 +217,6 @@ class EmployeesController extends Controller
     $employee->presences()->delete(); 
 
     $employee->schedules()->detach();
-
-    if ($employee->employee_img && $employee->employee_img != 'default_profile.png') {
-        Storage::disk('public')->delete($employee->employee_img);
-    }
 
     $employee->delete();
 
