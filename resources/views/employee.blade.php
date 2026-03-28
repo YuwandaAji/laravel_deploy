@@ -176,7 +176,7 @@
                             <div class="img-container">
                                 
                                 @if($employee->employee_img)
-                                    <img src="{{ $employee->employee_img }}" alt="image-emp" class="image-emp">
+                                    <img src="{{ $employee->employee_img }}" alt="image-emp" class="image-emp" id="img-emp">
                                 @endif
                                 
                                 <input type="file" accept="image/*" name="employee_img" id="input-file" hidden>
