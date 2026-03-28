@@ -159,7 +159,7 @@
 
                             <div class="img-container">
                                 
-                                <img src={{ asset("admin/img/default-camera.jpg") }} id="img-view">
+                                <img src={{ asset("admin/img/default-camera.jpg") }} id="img-preview">
                                 
                                 <input type="file" accept="image/*" name="product_img" id="input-file" hidden>
                             </div>
