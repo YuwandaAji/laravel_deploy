@@ -182,8 +182,8 @@
     <div class="profile-card">
         <div class="profile-image-wrapper">
             <div class="profile-image">
-                @if($customer->customer_img && file_exists(public_path('storage/'.$customer->customer_img)))
-                    <img src="{{ asset('storage/'. $customer->customer_img) }}" alt="Profile">
+                @if($customer->customer_img)
+                    <img src="{{ $customer->customer_img }}" alt="Profile">
                 @else
                     <div class="no-photo">
                         <i data-feather="user" style="width: 40px; height: 40px;"></i>
