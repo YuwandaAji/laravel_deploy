@@ -170,10 +170,8 @@
 
                             <div class="img-container">
                                 
-                                @if($employee->employee_img)
-                                    <img src="{{ $employee->employee_img }}" alt="image-emp" class="image-emp" id="img-emp">
-                                @else
-                                    <img src="{{ asset('admin/img/default_profile.png') }}" alt="image-emp" class="image-emp" id="img-emp">
+                                @if($product->product_img)
+                                    <img src="{{ $product->product_img }}" alt="image-emp" id="img-preview" class="image-item">
                                 @endif
                                 
                                 <input type="file" accept="image/*" name="product_img" id="input-file" hidden>
