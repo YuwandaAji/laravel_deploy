@@ -107,7 +107,7 @@
             <div class="main-info-cust">
                 <div class="info-left">
                     @if($customer->customer_img)
-                        <img src={{ asset('storage/'. $customer->customer_img) }} alt="image-emp" class="image-cust" style="height: 370px; object-fit: cover;">
+                        <img src="{{ $customer->customer_img }}" alt="image-emp" class="Profile_cus" style="height: 370px; object-fit: cover;">
                     @else
                         <img src="{{ asset('admin/img/default_profile.png') }}" alt="default_image" class="image-cust" style="height: 370px; object-fit: cover;">
                     @endif

@@ -119,7 +119,7 @@
                     <div class="list">
                         <a href={{ url("admin/customers/$customer->customer_id") }} class="inner-list">
                             @if($customer->customer_img)
-                                <img src={{ asset('storage/'. $customer->customer_img) }} alt="image-emp">
+                                <img src="{{ $customer->customer_img }}" alt="Profile_cus">
                             @else
                                 <img src="{{ asset('admin/img/default_profile.png') }}" alt="default_image">
                             @endif
