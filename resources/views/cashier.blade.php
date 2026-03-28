@@ -26,9 +26,9 @@
             <div class="user" onclick="subMenu()">
                 <span>{{ Auth::guard('employees')->user()->employee_name }}</span>
                 @if(Auth::guard('employees')->user()->employee_img)
-                    <img src="{{ asset('storage/' . Auth::guard('employees')->user()->employee_img) }}" alt="profil_image">
+                    <img src="{{ Auth::guard('employees')->user()->employee_img }}" alt="profil_image">
                 @else
-                    <img src="{{ asset('employees/img/default_profile.png') }}" alt="default_image">
+                    <img src="{{ asset('admin/img/default_profile.png') }}" alt="default_image">
                 @endif
             </div>
         </div>

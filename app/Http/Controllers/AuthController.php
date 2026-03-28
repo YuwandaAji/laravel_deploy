@@ -22,6 +22,29 @@ class AuthController extends Controller
         return view('login', $data);
     }
 
+    private function uploadToCloudinary($file)
+    {
+        $cloudName = env('CLOUDINARY_CLOUD_NAME');
+        $apiKey = env('CLOUDINARY_API_KEY');
+        $apiSecret = env('CLOUDINARY_API_SECRET');
+
+        $timestamp = time();
+        $signature = sha1("timestamp={$timestamp}{$apiSecret}");
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->post("https://api.cloudinary.com/v1_1/{$cloudName}/image/upload", [
+            'multipart' => [
+                ['name' => 'file', 'contents' => fopen($file->getRealPath(), 'r'), 'filename' => $file->getClientOriginalName()],
+                ['name' => 'api_key', 'contents' => $apiKey],
+                ['name' => 'timestamp', 'contents' => $timestamp],
+                ['name' => 'signature', 'contents' => $signature],
+            ]
+        ]);
+
+        $result = json_decode($response->getBody(), true);
+        return $result['secure_url'];
+    }
+
     public function register_post(Request $request) {
         $customer = request()->validate([
             'name' => 'required|max:255',
@@ -179,10 +202,7 @@ class AuthController extends Controller
         $customer->customer_address = $request->customer_address;
 
         if ($request->hasFile('customer_img')) {
-            $file = $request->file('customer_img');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('storage/customer_img'), $filename);
-            $customer->customer_img = 'customer_img/' . $filename;
+            $customer->customer_img = $this->uploadToCloudinary($request->file('customer_img'));
         }
 
         $customer->save(); 

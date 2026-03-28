@@ -42,9 +42,9 @@
                 <div class="user" onclick="subMenu()">
                     <span>{{ Auth::guard('web')->user()->customer_name }}</span>
                     @if(Auth::guard('web')->user()->customer_img)
-                        <img src="{{ asset('storage/' . Auth::guard('web')->user()->customer_img) }}" alt="profil_image">
+                        <img src="{{ Auth::guard('web')->user()->customer_img }}" alt="profil_image">
                     @else
-                        <img src="{{ asset('/img/default_profile.png') }}" alt="default_image">
+                        <img src="{{ asset('img/default_profile.png') }}" alt="default_image">
                     @endif
                 </div>
                 
