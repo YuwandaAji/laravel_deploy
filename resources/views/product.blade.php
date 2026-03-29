@@ -165,7 +165,7 @@
                             
                             <div class="editable-name">
                                 <span id="finalText" style="display: none;"></span>
-                                <textarea id="name-input" placeholder="Nama Produk" name="name" rows="1" spellcheck="true">{{$product->product_name}}</textarea>
+                                <textarea id="name-input" placeholder="Nama Produk" name="name" rows="1" spellcheck="true" required>{{$product->product_name}}</textarea>
                             </div>
 
                             <div class="img-container">
@@ -174,7 +174,7 @@
                                     <img src="{{ $product->product_img }}" alt="image-emp" id="img-preview" class="image-item">
                                 @endif
                                 
-                                <input type="file" accept="image/*" name="product_img" id="input-file" hidden>
+                                <input type="file" accept="image/*" name="product_img" id="input-file" hidden required>
                             </div>
 
                         </div>
@@ -189,20 +189,20 @@
                                         <label class="prc-label">Harga</label>
                                         <div class="inner-prc">
                                             <span class="prefix">Rp</span>
-                                            <input type="text" id="prcInput" name="price" autocomplete="off" placeholder="0.00" value="{{$product->product_price}}">
+                                            <input type="text" id="prcInput" name="price" autocomplete="off" placeholder="0.00" value="{{$product->product_price}}" required>
                                         </div>
                                     
                                     </div>
 
                                     <div class="size-form">
                                         <label class="size-label">Size</label>
-                                        <input type="text" id="sizeInput" style="display: block;" name="size" placeholder="" value="{{$product->product_size}}">
+                                        <input type="text" id="sizeInput" style="display: block;" name="size" placeholder="" value="{{$product->product_size}}" required>
                                         
                                     </div>
 
                                     <div class="stock-form">
                                         <label class="stock-label">Stock</label>
-                                        <input type="text" id="stockInput" style="display: block;" name="stock" placeholder="" value="{{$product->product_stock}}"> 
+                                        <input type="text" id="stockInput" style="display: block;" name="stock" placeholder="" value="{{$product->product_stock}}" required> 
                                         
                                     </div>
 
@@ -226,7 +226,7 @@
                             <div class="deskripsi-form">
                                 <label class="deskripsi-label">Deskripsi</label>
 
-                                    <textarea id="deskripsiInput" name="description" style="display: block;">{{$product->product_description}}</textarea>
+                                    <textarea id="deskripsiInput" name="description" style="display: block;" required>{{$product->product_description}}</textarea>
              
                             </div>
                             

@@ -185,13 +185,13 @@
                             <div class="text-top">
                                 <div class="editable-name">
                                     <span id="finalText" style="display: none;"></span>
-                                    <textarea name="name" id="name-input" placeholder="Nama Karyawan" rows="1" spellcheck="true">{{ $employee->employee_name }}</textarea>
+                                    <textarea name="name" id="name-input" placeholder="Nama Karyawan" rows="1" spellcheck="true" required>{{ $employee->employee_name }}</textarea>
                                 </div>
 
                                 <div class="email_password">
                                     <div class="email-form">
                                         <span class="material-symbols-outlined">mail</span>
-                                        <input type="text" name="email" id="emailInput" style="display: block;" placeholder="email" value={{ $employee->employee_email  }}>
+                                        <input type="text" name="email" id="emailInput" style="display: block;" placeholder="email" value={{ $employee->employee_email  }} required>
                                                 
                                     </div> 
 
@@ -204,7 +204,7 @@
                                 
                                 <div class="phone-form">
                                     <span class="material-symbols-outlined">phone_in_talk</span>
-                                    <input type="text" id="phoneInput" name="number_phone" style="display: block;" placeholder="Work Phone" value={{ $employee->employee_number  }}>
+                                    <input type="text" id="phoneInput" name="number_phone" style="display: block;" placeholder="Work Phone" value={{ $employee->employee_number  }} required>
                                             
                                 </div>
                             </div>
@@ -232,13 +232,13 @@
 
                                     <div class="address-form">
                                         <label class="address-label">Address</label>
-                                        <input type="text" id="addressInput" name="address" style="display: block;" placeholder="" value="{{ $employee->employee_address }}">
+                                        <input type="text" id="addressInput" name="address" style="display: block;" placeholder="" value="{{ $employee->employee_address }}" required>
                                         
                                     </div>
 
                                     <div class="birth-date-form">
                                         <label class="birth-label">Birth Date</label>
-                                        <input type="date" id="birthInput" name="birth_date" style="display: block;" placeholder="" value={{ $employee->employee_date_born  }} >
+                                        <input type="date" id="birthInput" name="birth_date" style="display: block;" placeholder="" value={{ $employee->employee_date_born  }} required>
                                         
                                     </div>
 
@@ -272,14 +272,14 @@
                                         <label class="salary-label">Salary</label>
                                         <div class="inner-slr">
                                             <span class="prefix">Rp</span>
-                                            <input type="text" name="salary" id="salaryInput" autocomplete="off" placeholder="0.00" value={{ $employee->employee_salary  }}>
+                                            <input type="text" name="salary" id="salaryInput" autocomplete="off" placeholder="0.00" value={{ $employee->employee_salary  }} required>
                                         </div>
                                             
                                     </div>
 
                                     <div class="join-date-form">
                                         <label class="join-label">Join Date</label>
-                                        <input type="date" name="join_date" id="joinInput" style="display: block;" placeholder="" value={{ $employee->employee_date_join  }}>
+                                        <input type="date" name="join_date" id="joinInput" style="display: block;" placeholder="" value={{ $employee->employee_date_join  }} required>
                                             
                                     </div>
                                 </div>

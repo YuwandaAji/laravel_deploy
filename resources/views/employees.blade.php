@@ -166,25 +166,25 @@
                                 
                                 <img src={{ asset("admin/img/default-camera.jpg") }} id="img-view">
                                 
-                                <input type="file" accept="image/*" name="employee_img" id="input-file" hidden>
+                                <input type="file" accept="image/*" name="employee_img" id="input-file" hidden required>
                             </div>
                             
                             <div class="text-top">
                                 <div class="editable-name">
                                     <span id="finalText" style="display: none;"></span>
-                                    <textarea id="name-input" name="name" placeholder="Nama Karyawan" rows="1" spellcheck="true"></textarea>
+                                    <textarea id="name-input" name="name" placeholder="Nama Karyawan" rows="1" spellcheck="true" required></textarea>
                                 </div>
 
                                 <div class="email_password">
                                     <div class="email-form">
                                         <span class="material-symbols-outlined">mail</span>
-                                        <input type="text" name="email" id="emailInput" style="display: block;" placeholder="email">
+                                        <input type="text" name="email" id="emailInput" style="display: block;" placeholder="email" required>
                                                 
                                     </div> 
 
                                     <div class="password-form">
                                         <span class="material-symbols-outlined">password</span>
-                                        <input type="password" name="password" id="passwordInput" style="display: block;" placeholder="password">
+                                        <input type="password" name="password" id="passwordInput" style="display: block;" placeholder="password" required>
                                                 
                                     </div> 
                                 </div>
@@ -192,7 +192,7 @@
                                 
                                 <div class="phone-form">
                                     <span class="material-symbols-outlined">phone_in_talk</span>
-                                    <input type="text" name="number_phone" id="phoneInput" style="display: block;" placeholder="Work Phone">
+                                    <input type="text" name="number_phone" id="phoneInput" style="display: block;" placeholder="Work Phone" required>
                                             
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                                     <div class="gender-form">
                                         <label class="gdr-label">Gender</label>
                                         <div class="gender-value">
-                                            <input type="radio" name="gender" value="1" id="genderInput" >Male
+                                            <input type="radio" name="gender" value="1" id="genderInput" required>Male
                                             <input type="radio" name="gender" value="0" id="genderInput" >Female
                                         </div>
                                         
@@ -220,13 +220,13 @@
 
                                     <div class="address-form">
                                         <label class="address-label">Address</label>
-                                        <input type="text" name="address" id="addressInput" style="display: block;" placeholder="">
+                                        <input type="text" name="address" id="addressInput" style="display: block;" placeholder="" required>
                                         
                                     </div>
 
                                     <div class="birth-date-form">
                                         <label class="birth-label">Birth Date</label>
-                                        <input type="date" name="birth_date" id="birthInput" style="display: block;" placeholder="">
+                                        <input type="date" name="birth_date" id="birthInput" style="display: block;" placeholder="" required>
                                         
                                     </div>
 
@@ -244,7 +244,7 @@
                                         <label class="role-label">Role</label>
                                         <div class="select-box">
                                             <input type="text" class="input-role" placeholder="" autocomplete="off">
-                                            <input type="hidden" name="role" id="roleId">
+                                            <input type="hidden" name="role" id="roleId" required>
                                             <ul class="select-options">
                                                 <li data-value="Manager">Manager</li>
                                                 <li data-value="Barista">Barista</li>
@@ -260,14 +260,14 @@
                                         <label class="salary-label">Salary</label>
                                         <div class="inner-slr">
                                             <span class="prefix">Rp</span>
-                                            <input type="text" id="salaryInput" name="salary" autocomplete="off" placeholder="0.00">
+                                            <input type="text" id="salaryInput" name="salary" autocomplete="off" placeholder="0.00" required>
                                         </div>
                                             
                                     </div>
 
                                     <div class="join-date-form">
                                         <label class="join-label">Join Date</label>
-                                        <input type="date" id="joinInput" name="join_date" style="display: block;" placeholder="">
+                                        <input type="date" id="joinInput" name="join_date" style="display: block;" placeholder="" required>
                                             
                                     </div>
                                 </div>

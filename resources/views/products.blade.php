@@ -154,14 +154,14 @@
                             
                             <div class="editable-name">
                                 <span id="finalText" style="display: none;"></span>
-                                <textarea id="name-input" placeholder="Nama Produk" name="name" rows="1" spellcheck="true"></textarea>
+                                <textarea id="name-input" placeholder="Nama Produk" name="name" rows="1" spellcheck="true" required></textarea>
                             </div>
 
                             <div class="img-container">
                                 
                                 <img src={{ asset("admin/img/default-camera.jpg") }} id="img-preview">
                                 
-                                <input type="file" accept="image/*" name="product_img" id="input-file" hidden>
+                                <input type="file" accept="image/*" name="product_img" id="input-file" hidden required>
                             </div>
 
                         </div>
@@ -176,20 +176,20 @@
                                         <label class="prc-label">Harga</label>
                                         <div class="inner-prc">
                                             <span class="prefix">Rp</span>
-                                            <input type="text" name="price" id="prcInput" autocomplete="off" placeholder="0.00">
+                                            <input type="text" name="price" id="prcInput" autocomplete="off" placeholder="0.00" required>
                                         </div>
                                     
                                     </div>
 
                                     <div class="size-form">
                                         <label class="size-label">Size</label>
-                                        <input type="text" id="sizeInput" name="size" style="display: block;" placeholder="">
+                                        <input type="text" id="sizeInput" name="size" style="display: block;" placeholder="" required>
                                         
                                     </div>
 
                                     <div class="stock-form">
                                         <label class="stock-label">Stock</label>
-                                        <input type="text" name="stock" id="stockInput" style="display: block;" placeholder="">
+                                        <input type="text" name="stock" id="stockInput" style="display: block;" placeholder="" required>
                                         
                                     </div>
 
@@ -197,7 +197,7 @@
                                         <label class="cat-label">Category</label>
                                         <div class="select-box">
                                             <input type="text" class="input-cat" placeholder="" autocomplete="off">
-                                            <input type="hidden" name="category" id="catId">
+                                            <input type="hidden" name="category" id="catId" required>
                                             <ul class="select-options">
                                                 <li data-value="Coffe">Coffe</li>
                                                 <li data-value="Signature">Signature</li>
@@ -213,7 +213,7 @@
                             <div class="deskripsi-form">
                                 <label class="deskripsi-label">Deskripsi</label>
 
-                                    <textarea id="deskripsiInput" name="description" style="display: block;"></textarea>
+                                    <textarea id="deskripsiInput" name="description" style="display: block;" required></textarea>
              
                             </div>
                             
